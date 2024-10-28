@@ -1,0 +1,63 @@
+.info{
+    width: 100%;
+    height: 94vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info__img{
+    width: 40%;
+    height: 70%;
+    border-radius: 20px;
+    background-size: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.info__content__container{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-left: 30px;
+}
+.title__info{
+    font-size: 32px;
+    font-weight: 700;
+}
+.category__info{
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}   
+.category__info span{
+    font-weight: 700;
+    font-size: 20px;
+}
+.instructions__info span{
+    font-weight: 700;
+    font-size: 20px;
+}
+.ingradients__info{
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+}
+.ingradients__info h5{
+    font-weight: 500;
+}
+.ingradients__info span{
+    font-weight: 700;
+    font-size: 20px;
+}
+.btn__youtube{
+    width: 150px;
+    height: 40px;
+    background-color: cadetblue;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
