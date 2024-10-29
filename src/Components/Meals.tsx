@@ -28,10 +28,12 @@ const Meals: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
     const {data, error, isLoading}: UseQueryResult<{meals: Meal[]}, Error> = useQuery({
         queryKey: ['meals'],
         queryFn: fetchMeals,
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
     });
 
-    if (isLoading) return <p>Loading...</p>
-    if (error instanceof Error) return <p>Error: {error.message}</p>
+    if (isLoading) return <p className="empty__state">Loading...</p>
+    if (error instanceof Error) return <p className="empty__state">Error: {error.message}</p>
 
     const meals =  data?.meals || [];
     const filteredMeals = meals.filter((meal) =>
@@ -45,7 +47,8 @@ const Meals: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
     const firstPostIndex:number = lastPostIndex - postPerPage;
     const currentPosts: Meal[] = filteredMeals.slice(firstPostIndex, lastPostIndex);
 
-    console.log(category);
+
+
     
   return (
     <section className="meals">
@@ -64,11 +67,11 @@ const Meals: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
                     </MenuItem>
                     <MenuItem value={'Seafood'}>Seafood</MenuItem>
                     <MenuItem value={'Side'}>Side</MenuItem>
-                    <MenuItem value={'Vegeterian'}>Vegeterian</MenuItem>
+                    <MenuItem value={'Vegetarian'}>Vegetarian</MenuItem>
                     <MenuItem value={'Beef'}>Beef</MenuItem>
                     <MenuItem value={'Pork'}>Pork</MenuItem>
                     <MenuItem value={'Pasta'}>Pasta</MenuItem>
-                    <MenuItem value={'Desert'}>Desert</MenuItem>
+                    <MenuItem value={'Dessert'}>Dessert</MenuItem>
                     <MenuItem value={'Miscellaneous'}>Miscellaneous</MenuItem>
                     <MenuItem value={'Lamb'}>Lamb</MenuItem>
                     <MenuItem value={'Chiken'}>Chicken</MenuItem>
@@ -85,21 +88,26 @@ const Meals: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
                 />
             </div>
             <div className="carts__container">
-                {currentPosts.map((meal) => (
-                    <div className="cart" key={meal.idMeal}>
-                        <img src={meal.strMealThumb} alt={meal.strMeal} className="cart__img"/>
-                        <div className="cart__content">
-                            <h1 className="cart__title">{meal.strMeal}</h1>
-                            <h3>• {meal.strArea} • {meal.strCategory}</h3>
-                            <div className="cart__btn__container">
-                                <button className="load__more" onClick={() => navigate('/infoPage', {state: meal})}>Read more</button>
-                                <button className="heart" onClick={() => toggleFavorite(meal)}>
-                                    {likedMeals.some((likedMeal) => likedMeal.idMeal === meal.idMeal) ? "♥" : "♡"}
-                                </button>
+                { currentPosts.length === 0 ? (
+                    <h1>Nothing to show </h1>
+                ) : (
+                    currentPosts.map((meal) => (
+                        <div className="cart" key={meal.idMeal}>
+                            <img src={meal.strMealThumb} alt={meal.strMeal} className="cart__img"/>
+                            <div className="cart__content">
+                                <h1 className="cart__title">{meal.strMeal}</h1>
+                                <h3>• {meal.strArea} • {meal.strCategory}</h3>
+                                <div className="cart__btn__container">
+                                    <button className="load__more" onClick={() => navigate('/infoPage', {state: meal})}>Read more</button>
+                                    <button className="heart" onClick={() => toggleFavorite(meal)}>
+                                        {likedMeals.some((likedMeal) => likedMeal.idMeal === meal.idMeal) ? "♥" : "♡"}
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                )}
+                
             </div>
             <div className="pagination__container">
                 <Pagination 

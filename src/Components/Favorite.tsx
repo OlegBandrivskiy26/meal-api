@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/Favorite.css'
 import { MealsProps } from '../Services/Types'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Favorite: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
     const navigate = useNavigate();
@@ -19,6 +19,13 @@ const Favorite: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
             }
         }
     });
+    if(likedMeals.length === 0){
+        return(
+            <div className="empty__state">
+                You have not added any recipes  <NavLink to="/">    Add some recipes</NavLink>
+            </div>
+        )
+    }
 
   return (
     <section className='favorite'>
