@@ -1,6 +1,6 @@
 import React from 'react'
-import '../Styles/Favorite.css'
-import { MealsProps } from '../Services/Types'
+import '../styles/Favorite.css'
+import { MealsProps } from '../services/types'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 const Favorite: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {

@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Header from "./Components/Header";
-import Meals from "./Components/Meals";
-import "./Styles/App.css";
+import Header from "./components/Header";
+import Meals from "./components/Meals";
+import "./styles/App.css";
 import { Routes, Route } from "react-router-dom";
-import InfoPage from "./Components/InfoPage";
+import InfoPage from "./components/InfoPage";
 import { useState } from "react";
-import { Meal } from "./Services/Types";
-import Favorite from "./Components/Favorite";
+import { Meal } from "./services/types";
+import Favorite from "./components/Favorite";
 
 function App() {
   const queryClient = new QueryClient();

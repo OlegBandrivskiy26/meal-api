@@ -1,8 +1,8 @@
 import { FormControl, InputLabel, Select, MenuItem, Pagination} from "@mui/material"
-import "../Styles/Meal.css"
+import "../styles/Meal.css"
 import { UseQueryResult, useQuery } from "@tanstack/react-query"
-import { fetchMeals } from "../Services/Api"
-import { Meal, MealsProps } from "../Services/Types"
+import { fetchMeals } from "../services/api"
+import { Meal, MealsProps } from "../services/types"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -53,7 +53,7 @@ const Meals: React.FC<MealsProps> = ({likedMeals, toggleFavorite}) => {
   return (
     <section className="meals">
         <div className="filtration__container">
-            <FormControl sx={{ m: 1, minWidth: 120, marginTop: 5,}}>
+            <FormControl className="form__controll">
                 <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
                 <Select
                 labelId="demo-simple-select-helper-label"

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { Meal } from "../Services/Types";
-import "../Styles/InfoPage.css";
+import { Meal } from "../services/types";
+import "../styles/InfoPage.css";
 
 const InfoPage = () => {
     const location = useLocation();
